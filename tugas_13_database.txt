@@ -1,0 +1,25 @@
+1.Jalankan MySQL server di xampp
+2.Masuk kedalam folder bin mysql : cd c:/xampp/mysql/bin
+3.Jalankan client server : MYSQL -u root
+4.Create database belajar;
+5.use belajar;
+
+6.DELIMITER //
+ 
+ CREATE PROCEDURE penilaian(nim_mhs INT(10))
+ BEGIN
+ DECLARE sem_1 DECIMAL(4,2) DEFAULT 0;
+ SELECT semester_1 INTO sem_1 FROM nilai_mahasiswa
+ WHERE nim = nim_mhs;
+ IF sem_1 <= 1.00 THEN
+ SELECT "Serius kuliah g sih?";
+ ELSEIF sem_1 <= 2.00 THEN
+ SELECT "Kebanyakan main";
+ ELSEIF sem_1 <= 3.00 THEN
+ SELECT "Berusaha lagi";
+ ELSEIF sem_1 <= 4.00 THEN
+ SELECT "Mantap, pertahankan!";
+ ELSE
+ SELECT "Nilai tidak sesuai";  
+ END IF;
+ END //
